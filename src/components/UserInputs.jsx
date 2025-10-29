@@ -5,18 +5,41 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { TextField } from '@mui/material';
+import { duration, TextField } from '@mui/material';
 import { FaXmark } from "react-icons/fa6";
 
 const steps = ['Basic Information', 'Contact Details', 'Educational Deatils', 'Work Experiance', 'Skills & Certifications', 'Review & submit'];
+
 
 function UserInputs() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const skillSuggest=['NODE-JS','REACT','PYTHON','ANGULAR','','','','']
+  const [resumeDeatils,setResumeDetails]=React.useState({
+  username:"",
+  jobTitle:"",
+  location:"",
+  email:"",
+  mobile:"",
+  github:"",
+  linkdin:"",
+  portfolio:"",
+  course:"",
+  college:"",
+  university:"",
+  passout:"",
+  jobType:"",
+  companyName:"",
+  companyLocation:"",
+  duration:"",
+  skills:[],
+  summary:"",
+
+})
+console.log(resumeDeatils)
 
   const isStepOptional = (step) => {
-    return step === 1;
+    return step === 3;
   };
 
   const isStepSkipped = (step) => {
@@ -63,9 +86,9 @@ function UserInputs() {
             <div>
                 <h1 className='text-[30px]'>Personal Details</h1>
                 <div className="row p-3">
-                    <TextField id='userFullname' label='Full Name' variant='standard' />
-                    <TextField id='userJob' label='job-title' variant='standard' />
-                    <TextField id='userLocation' label='location' variant='standard' />
+                    <TextField value={resumeDeatils.username} onChange={e=>setResumeDetails({...resumeDeatils,username:e.target.value})} id='userFullname' label='Full Name' variant='standard' />
+                    <TextField value={resumeDeatils.jobTitle} onChange={e=>setResumeDetails({...resumeDeatils,jobTitle:e.target.value})} id='userJob' label='job-title' variant='standard' />
+                    <TextField value={resumeDeatils.location} onChange={e=>setResumeDetails({...resumeDeatils,location:e.target.value})} id='userLocation' label='location' variant='standard' />
                 </div>
             </div>
         )
@@ -73,11 +96,11 @@ function UserInputs() {
           <div>
             <h1 className='text-[30px]'>Contact Details</h1>
             <div className="row p-3">
-                  <TextField id='userEmail' label='E-Mail' variant='standard' />
-                  <TextField id='userPhone' label='Phone Number' variant='standard' />
-                  <TextField id='userGithub' label='Github Profile Link' variant='standard' />
-                  <TextField id='userLinkdin' label='LinkdIn Profile Link' variant='standard' />
-                  <TextField id='userPortfolio' label='Portfolio Link' variant='standard' />
+                  <TextField value={resumeDeatils.email} onChange={e=>setResumeDetails({...resumeDeatils,email:e.target.value})} id='userEmail' label='E-Mail' variant='standard' />
+                  <TextField value={resumeDeatils.mobile} onChange={e=>setResumeDetails({...resumeDeatils,mobile:e.target.value})} id='userPhone' label='Phone Number' variant='standard' />
+                  <TextField value={resumeDeatils.github} onChange={e=>setResumeDetails({...resumeDeatils,github:e.target.value})} id='userGithub' label='Github Profile Link' variant='standard' />
+                  <TextField value={resumeDeatils.linkdin} onChange={e=>setResumeDetails({...resumeDeatils,linkdin:e.target.value})} id='userLinkdin' label='LinkdIn Profile Link' variant='standard' />
+                  <TextField value={resumeDeatils.portfolio} onChange={e=>setResumeDetails({...resumeDeatils,portfolio:e.target.value})} id='userPortfolio' label='Portfolio Link' variant='standard' />
 
             </div>
           </div>            
@@ -86,11 +109,10 @@ function UserInputs() {
           <div>
             <h1 className='text-[30px]'>Educational Details</h1>
             <div className="row p-3">
-                  <TextField id='userFullname' label='E-Mail' variant='standard' />
-                  <TextField id='userFullname' label='Phone Number' variant='standard' />
-                  <TextField id='userFullname' label='Github Profile Link' variant='standard' />
-                  <TextField id='userFullname' label='LinkdIn Profile Link' variant='standard' />
-                  <TextField id='userFullname' label='Portfolio Link' variant='standard' />
+                  <TextField value={resumeDeatils.course} onChange={e=>setResumeDetails({...resumeDeatils,course:e.target.value})} id='userCourse' label='course Name' variant='standard' />
+                  <TextField value={resumeDeatils.college} onChange={e=>setResumeDetails({...resumeDeatils,college:e.target.value})} id='userCollege' label='College Name' variant='standard' />
+                  <TextField value={resumeDeatils.university} onChange={e=>setResumeDetails({...resumeDeatils,university:e.target.value})} id='userUni' label='University' variant='standard' />
+                  <TextField value={resumeDeatils.passout} onChange={e=>setResumeDetails({...resumeDeatils,passout:e.target.value})} id='userPass' label='Passout Year' variant='standard' />
 
             </div>
           </div>  
@@ -99,10 +121,10 @@ function UserInputs() {
           <div>
             <h1 className='text-[30px]'>Professional Details</h1>
             <div className="row p-3">
-                  <TextField id='userdesig' label='Job or Intership' variant='standard' />
-                  <TextField id='userCompany' label='Company Name' variant='standard' />
-                  <TextField id='userFullname' label='COmpany Location' variant='standard' />
-                  <TextField id='userFullname' label='Duration' variant='standard' />
+                  <TextField value={resumeDeatils.jobType} onChange={e=>setResumeDetails({...resumeDeatils,jobType:e.target.value})} id='userdesig' label='Job or Intership' variant='standard' />
+                  <TextField value={resumeDeatils.companyName} onChange={e=>setResumeDetails({...resumeDeatils,companyName:e.target.value})} id='userCompany' label='Company Name' variant='standard' />
+                  <TextField value={resumeDeatils.companyLocation} onChange={e=>setResumeDetails({...resumeDeatils,companyLocation:e.target.value})} id='companyLocation' label='COmpany Location' variant='standard' />
+                  <TextField value={resumeDeatils.duration} onChange={e=>setResumeDetails({...resumeDeatils,duration:e.target.value})} id='jobDuration' label='Duration' variant='standard' />
             </div>
           </div>  
         )
@@ -133,7 +155,7 @@ function UserInputs() {
             <div>
               <h1 className='text-[30px]'>Summary</h1>
               <div className="row p-3">
-                <TextField id='userSummary' variant='standerd' label='write a short nsummary of yourself' multiline rows={4} defaultValue="ff "/>
+                <TextField onChange={e=>setResumeDetails({...resumeDeatils,summary:e.target.value})} id='userSummary' variant='standard' label='write a short summary of yourself' multiline rows={4} defaultValue="MERN Stack Developer with strong skills in MongoDB, Express.js, React, and Node.js. Experienced in building responsive, user-friendly web apps with clean code and modern UI using Tailwind CSS and Bootstrap. Passionate about great UX, debugging efficiently, and delivering scalable, professional solutions that align with business goals"/>
               </div>
             
             </div>
@@ -178,9 +200,9 @@ function UserInputs() {
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
           {/* render steps */}
-          <box>
+          <Box>
             {renderSteps(activeStep)}
-          </box>
+          </Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"
