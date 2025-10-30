@@ -4,7 +4,7 @@ import React from 'react'
 
 function Preview() {
   return (
-    <div style={{margin:"0px 30px"}} className='p-3 shadow rounded w-100 text-center'>
+    <div style={{margin:"15px 30px"}} className='p-3 shadow rounded w-100 text-center'>
       <h1 className='my-2'>Name</h1>
       <h1 className='my-2'>Job title</h1>
       <h6> <span className='mx-2'>location</span> | <span className='mx-2'>E Mail</span> | <span className='mx-2'>mobile</span></h6>

@@ -12,9 +12,12 @@ const steps = ['Basic Information', 'Contact Details', 'Educational Deatils', 'W
 
 
 function UserInputs() {
+
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
-  const skillSuggest=['NODE-JS','REACT','PYTHON','ANGULAR','','','','']
+
+  const skillSuggest=['NODE-JS','REACT','PYTHON','ANGULAR','BOOTSTRAP','TAILWIND','EXPRESS-JS','MONGO-DB']
+
   const [resumeDeatils,setResumeDetails]=React.useState({
   username:"",
   jobTitle:"",
@@ -32,11 +35,26 @@ function UserInputs() {
   companyName:"",
   companyLocation:"",
   duration:"",
-  skills:[],
+  userSkills:[],
   summary:"",
 
-})
-console.log(resumeDeatils)
+  })
+    console.log(resumeDeatils)
+
+    const skillRef=React.useRef()
+
+    const addSkill=(skill)=>{
+      if(resumeDeatils.userSkills.includes(skill)){
+        alert("The given skill already added, Please add another!")
+      }else{
+        setResumeDetails({...resumeDeatils,userSkills:[...resumeDeatils.userSkills,skill]})
+        skillRef.current.value=""
+      }
+    }
+
+    const removeSkill=(skill)=>{
+      setResumeDetails({...resumeDeatils,userSkills:resumeDeatils.userSkills.filter(item=>item!=skill)})
+    }
 
   const isStepOptional = (step) => {
     return step === 3;
@@ -52,7 +70,6 @@ console.log(resumeDeatils)
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
-
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
@@ -132,24 +149,31 @@ console.log(resumeDeatils)
           <div>
             <h1 className='text-[30px]'>Skills</h1>
             <div className="d-flex justify-center-center flex-wrap my-3 ">
-              <TextField id='outline-basic' label='Skill'></TextField>
-              <Button type='button'>ADD</Button>
+              <TextField inputRef={skillRef} id='outline-basic' label='Add Skills'></TextField>
+              <Button onClick={()=>addSkill(skillRef.current.value)} variant='text' type='button'>ADD</Button>
             </div>
 
             <h1 className='text-[30px]'>Suggestions</h1>
             <div className="d-flex justify-center-center flex-wrap my-3 ">
               {
                 skillSuggest.map((item,index)=>(
-                  <Button key={index} varient='outlined' className=''>{item}</Button>
+                  <Button key={index} onClick={()=>addSkill(item)} variant="outlined" className='m-2'>{item}</Button>
                 ))
               }
             </div>
-
-            <h1 className='text-[30px]'>Skills</h1>
-            <div className="d-flex justify-content-center flex-wrap m-3 ">
-              <Button variant='contained'> REACT <FaXmark className='ml-2 '/></Button>
-            </div>
-          </div>       
+              <h1 className='text-[30px]'>Added Skills</h1>
+              <div className="d-flex justify-content-center flex-wrap m-3 ">
+                {
+                  resumeDeatils.userSkills?.length>0
+                    ?
+                    resumeDeatils.userSkills.map((skill,index)=>(
+                      <Button key={index} variant='contained' className='m-2'> {skill} <FaXmark onClick={()=>removeSkill(skill)} className='ms-2'/></Button>
+                    ))
+                    :
+                    <p className='fw-bolder'>No Skills are added yet!</p>
+                }
+              </div>
+            </div>       
         )
         case 5 : return(
             <div>
