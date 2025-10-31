@@ -11,34 +11,14 @@ import { FaXmark } from "react-icons/fa6";
 const steps = ['Basic Information', 'Contact Details', 'Educational Deatils', 'Work Experiance', 'Skills & Certifications', 'Review & submit'];
 
 
-function UserInputs() {
+function UserInputs({resumeDeatils,setResumeDetails}) {
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
 
   const skillSuggest=['NODE-JS','REACT','PYTHON','ANGULAR','BOOTSTRAP','TAILWIND','EXPRESS-JS','MONGO-DB']
 
-  const [resumeDeatils,setResumeDetails]=React.useState({
-  username:"",
-  jobTitle:"",
-  location:"",
-  email:"",
-  mobile:"",
-  github:"",
-  linkdin:"",
-  portfolio:"",
-  course:"",
-  college:"",
-  university:"",
-  passout:"",
-  jobType:"",
-  companyName:"",
-  companyLocation:"",
-  duration:"",
-  userSkills:[],
-  summary:"",
 
-  })
     console.log(resumeDeatils)
 
     const skillRef=React.useRef()
@@ -140,7 +120,7 @@ function UserInputs() {
             <div className="row p-3">
                   <TextField value={resumeDeatils.jobType} onChange={e=>setResumeDetails({...resumeDeatils,jobType:e.target.value})} id='userdesig' label='Job or Intership' variant='standard' />
                   <TextField value={resumeDeatils.companyName} onChange={e=>setResumeDetails({...resumeDeatils,companyName:e.target.value})} id='userCompany' label='Company Name' variant='standard' />
-                  <TextField value={resumeDeatils.companyLocation} onChange={e=>setResumeDetails({...resumeDeatils,companyLocation:e.target.value})} id='companyLocation' label='COmpany Location' variant='standard' />
+                  <TextField value={resumeDeatils.companyLocation} onChange={e=>setResumeDetails({...resumeDeatils,companyLocation:e.target.value})} id='companyLocation' label='Company Location' variant='standard' />
                   <TextField value={resumeDeatils.duration} onChange={e=>setResumeDetails({...resumeDeatils,duration:e.target.value})} id='jobDuration' label='Duration' variant='standard' />
             </div>
           </div>  
