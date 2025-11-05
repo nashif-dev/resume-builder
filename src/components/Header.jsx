@@ -21,7 +21,7 @@ function Header() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}>
-            <img className='w-10' src="r1.png" alt="logo" />
+            <img className='w-10' src="/r1.png" alt="logo" />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to={'/'}>Resuma</Link>
