@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { duration, TextField } from '@mui/material';
 import { FaXmark } from "react-icons/fa6";
+import { Await } from 'react-router-dom';
+import { addResumeAPI } from '../services/allAPI';
 
 const steps = ['Basic Information', 'Contact Details', 'Educational Deatils', 'Work Experiance', 'Skills & Certifications', 'Review & submit'];
 
@@ -167,7 +169,20 @@ function UserInputs({resumeDeatils,setResumeDetails}) {
 
     }
   }
-
+  const handleAddResume=async()=>{
+    const{username,jobTitle,location}=resumeDeatils
+    if(!username && !jobTitle && !location){
+      alert("Please fill the form completely")
+    }else{
+    console.log('API call');
+    try {
+      await addResumeAPI(resumeDeatils)
+      
+    } catch (error) {
+      
+    }
+    }
+  }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -222,9 +237,13 @@ function UserInputs({resumeDeatils,setResumeDetails}) {
                 Skip
               </Button>
             )}
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
+            {activeStep === steps.length - 1 ?
+             <Button onClick={handleAddResume}> finish </Button>
+             : 
+            <Button onClick={handleNext}> Next </Button>
+            }
+
+            
           </Box>
         </React.Fragment>
       )}

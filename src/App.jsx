@@ -11,6 +11,7 @@ import History from "./pages/History"
 import Page404 from "./pages/Page404"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import ViewResume from "./pages/ViewResume"
 
 import './App.css'
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/form' element={ <Form/> }/>
           <Route path='/resume' element={ <ResumeGenerator/> }/>
           <Route path='/history' element={ <History/> }/>
+          <Route path='/resume/:id/view' element={ <ViewResume/> }/>
           <Route path='/*' element={ <Page404/> }/>
 
         </Routes>
