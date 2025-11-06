@@ -4,7 +4,7 @@ import Preview from '../components/Preview'
 
 function Form() {
 
-    const [resumeDeatils,setResumeDetails]=React.useState({
+    const [resumeDetails,setResumeDetails]=React.useState({
     username:"",
     jobTitle:"",
     location:"",
@@ -25,18 +25,18 @@ function Form() {
     summary:"",
   
     })
-      console.log(resumeDeatils)
+      console.log(resumeDetails)
   
   return (
     <div className='container'>
       <div className="row p-5">
         <div className="col-lg-6">
-           <UserInputs resumeDeatils={resumeDeatils}  setResumeDetails={setResumeDetails}/> 
+           <UserInputs resumeDetails={resumeDetails}  setResumeDetails={setResumeDetails}/> 
         </div>
         <div className="col-lg-6">
           {
-            resumeDeatils.username &&
-            <Preview resumeDeatils={resumeDeatils} />
+            resumeDetails.username &&
+            <Preview resumeDetails={resumeDetails} />
           }
         </div>
 
