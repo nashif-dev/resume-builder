@@ -30,7 +30,7 @@ function Preview({ resumeDetails }) {
       <div className="d-flex justify-content-center flex align-items-center flex-wrap m-3 ">
         {
           resumeDetails?.userSkills?.map((item, index) => (
-            <Button variant='contained' sx={{ m: 1 }}> {item} </Button>
+            <Button variant='contained' sx={{ m: 1 }} key={index}> {item} </Button>
           ))
         }
       </div>

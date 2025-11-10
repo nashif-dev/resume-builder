@@ -5,10 +5,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
-import { CgOverflow } from 'react-icons/cg';
 import { FaXmark } from "react-icons/fa6";
-
-
+import { updateResumeAPI } from '../services/allAPI';
 
 
 const style = {
@@ -44,7 +42,28 @@ function Edit({ resumeDetails, setResumeDetails }) {
   const removeSkill = (skill) => {
     setResumeDetails({ ...resumeDetails, userSkills: resumeDetails.userSkills.filter(item => item != skill) })
   }
-    
+  const handleUpdateResume=async()=>{
+    const {id, username, jobTitle, location}= resumeDetails
+    if(!username && !jobTitle && !location){
+        alert("please fill the form completely..")
+    }else{
+        console.log("api call");
+        try {
+            const result= await updateResumeAPI(id,resumeDetails)
+            console.log(result);
+            if (result.status==200) {
+                alert("resume updated succesfully...")
+                handleClose()
+            }
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+        
+    }
+  }
+
 
     return (
         <div>
@@ -127,7 +146,7 @@ function Edit({ resumeDetails, setResumeDetails }) {
                             </div>
                         </div>
                         <div className="flex items-center justify-center ">
-                            <button className='text-center border rounded bg-[green] text-[white] font-bold text-3xl px-3 py-1'>Update</button>
+                            <button onClick={handleUpdateResume} className='text-center border rounded bg-[green] text-[white] font-bold text-3xl px-3 py-1'>Update</button>
                         </div>
 
                     </Box>

@@ -8,4 +8,9 @@ export const addResumeAPI=async(resume)=>{
 //get resume api-GET
 export const getResumeAPI=async (id)=>{
     return await CommonAPI(`${ServerURL}/resumes/${id}`,"GET")
+}   
+//add history api-put
+export const updateResumeAPI=async (id,resume)=>{
+    return await CommonAPI(`${ServerURL}/resumes/${id}`,"PUT",resume)
 }
+//get history api   
