@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Preview  from '../components/Preview'
 import { Link, useParams } from 'react-router-dom'
-import { getResumeAPI } from '../services/allAPI';
+import { addHistoryAPI, getResumeAPI } from '../services/allAPI';
 import { MdFileDownload } from "react-icons/md";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { IoArrowForwardCircleSharp } from "react-icons/io5";
@@ -46,8 +46,14 @@ function ViewResume() {
       doc.addImage(resumeImg,'PNG',0,0,imgWidth,imgHieght)
       //download pdf
       doc.save(`${resume.username}-resume.pdf`)
-
-      const localTimeStamp=new Date()
+      const localTimeData=new Date()
+      const timeStamp=`${localTimeData.toLocaleDateString()},${localTimeData.toTimeString()}`
+      try{
+        await addHistoryAPI({timeStamp,resumeImg})
+      }catch(error){
+        console.log(error);
+        
+      }
   }
 
 
